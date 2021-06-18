@@ -60,7 +60,7 @@ def identity(k):
 def cube(k):
 	return pow(k, 3)
  
-# term is a varible representation of a function
+# term is a variable representation of a function
 def summation(n, term):
 	"""Sum the first N terms of a sequence
 	>>> summation(5, cube)
