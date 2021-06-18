@@ -160,3 +160,76 @@ def fact_iter(n):
 	while k <= n:
 		total, k = total * k, k + 1
 	return total
+
+def luhn_sum(n):
+	"""Return the digit sum of N computed by the Luhn Algorithm.
+
+	>>> luhn_sum(2)
+	2
+	>>> luhn_sum(12)
+	4
+	>>> luhn_sum(42)
+	10
+	>>> luhn_sum(138743)
+	30
+	>>> luhn_sum(5105105105105100)
+	20
+	>>> luhn_sum(4012888888881881)
+	90
+	"""
+	if n < 10:
+		return n
+	else:
+		all_but_last, last = split(n)
+		return luhn_sum_double(all_but_last) + last
+
+def luhn_sum_double(n):
+	"""Return the Luhn sum of N by doubling the last digit."""
+	all_but_last, last = split(n)
+	luhn_digit = sum_digits(2 * last)
+	if n < 10:
+		return luhn_digit
+	else:
+		return luhn_sum(all_but_last) + luhn_digit
+
+# Ordering
+
+def cascade(n): 
+	"""print a casscade of prefixes of n.
+
+	>>> cascade(1234)
+	1234
+	123
+	12
+	1
+	12
+	123
+	1234
+	"""
+	if n < 10:
+		print(n)
+	else:
+		print(n)
+		cascade(n // 10)
+		print(n)
+
+def cascade_easy(n):
+	print(n)
+	if n >= 10:
+		cascade_easy(n // 10)
+		print(n)
+
+def inverse_cascade(n):
+	grow(n)
+	print(n)
+	shrink(n)
+
+def f_then_g(f, g, n):
+	if n:
+		f(n)
+		g(n)
+
+grow = lambda n: f_then_g(grow, print, n // 10)
+shrink = lambda n: f_then_g(print, shrink, n // 10)
+
+
