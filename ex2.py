@@ -120,6 +120,46 @@ def sum_digits_rec(n, digit_sum):
 		n, last = split(n)
 		return sum_digits_rec(n, digit_sum + last)
 
+def fib(n):
+	"""Return the fibonacci of N.
+
+	>>> fib(3)
+	2
+	>>> fib(5)
+	5
+	>>> fib(10)
+	55
+	"""
+	if n == 0:
+		return 0
+	elif n == 1:
+		return 1
+	else:
+		return fib(n - 2) + fib(n - 1)
+
+def fib_iter(n):
+	"""Return the fibonacci of N.
+
+	>>> fib_iter(3)
+	2
+	>>> fib_iter(5)
+	5
+	>>> fib_iter(8)
+	21
+	>>> fib_iter(9)
+	34
+	>>> fib_iter(10)
+	55
+	"""
+	n1, n2 = 0, 1
+	counter = 0
+	while counter < n:
+		temp = n1 + n2
+		n1 = n2
+		n2 = temp
+		counter += 1
+	return n1
+
 def fact(n):
 	"""Return the factorial of N.
 	>>> fact(0)
@@ -176,6 +216,10 @@ def luhn_sum(n):
 	20
 	>>> luhn_sum(4012888888881881)
 	90
+	>>> luhn_sum(6048451000195665)
+	60
+	>>> luhn_sum(8926301000872750)
+	60
 	"""
 	if n < 10:
 		return n
