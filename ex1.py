@@ -178,14 +178,12 @@ def fib_iter(n):
     >>> fib_iter(10)
     55
     """
-    n1, n2 = 0, 1
-    counter = 0
-    while counter < n:
-        temp = n1 + n2
-        n1 = n2
-        n2 = temp
-        counter += 1
-    return n1
+    pred, curr = 0, 1
+    k = 1
+    while k < n:
+        pred, curr = curr, pred + curr
+        k += 1
+    return curr
 
 
 def fact(n):
@@ -328,3 +326,5 @@ def count_partitions(n, m):
         with_m = count_partitions(n - m, m)
         without_m = count_partitions(n, m - 1)
         return with_m + without_m
+
+
