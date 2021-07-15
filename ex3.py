@@ -11,7 +11,7 @@ class Clown:
     nose = 'big and red'
 
     def dance():
-        return 'No Thanks'
+        return 'No thanks'
 
 
 class Account:
@@ -71,3 +71,36 @@ class CheckingAccount(Account):
 
     def withdraw(self, amount):
         return Account.withdraw(self, amount + self.withdraw_fee)
+
+
+class Bank:
+    """A bank has accounts and pays interest.
+
+    >>> bank = Bank()
+    >>> andile = bank.open_account('Andile', 10)
+    >>> zola = bank.open_account('Nokuzola', 5, CheckingAccount)
+    >>> zola.interest
+    0.01
+    >>> andile.interest = 0.06
+    >>> bank.pay_interest()
+    >>> andile.balance
+    10.6
+    >>> zola.balance
+    5.05
+    """
+
+    def __init__(self):
+        self.accounts = []
+
+    def open_account(self, holder, amount, account_type=Account):
+        """Open an account_type for holder and deposit amount."""
+
+        account = account_type(holder)
+        account.deposit(amount)
+        self.accounts.append(account)
+        return account
+
+    def pay_interest(self): 
+        """Pay interest to all accounts."""
+        for account in self.accounts:
+            account.deposit(account.balance * account.interest)
