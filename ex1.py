@@ -14,6 +14,7 @@ def area_square(r):
 
 def area_circle(r):
     """Return the area of a circle with radius R
+
     """
     return r * r * pi
 
@@ -42,6 +43,17 @@ def a_square(r):
 
 
 def a_circle(r):
+    """Return the area of a circle.
+
+    >>> a_circle(5)
+    78.53981633974483
+
+    >>> a_circle(7)
+    153.93804002589985
+    
+    >>> a_circle(3)
+    28.274333882308138
+    """
     return area(r, pi)
 
 
@@ -147,7 +159,7 @@ def sum_digits_rec(n, digit_sum):
 
 
 def fib(n):
-    """Return the fibonacci of N.
+    """Recursively return the fibonacci of N.
 
     >>> fib(3)
     2
@@ -165,7 +177,7 @@ def fib(n):
 
 
 def fib_iter(n):
-    """Return the fibonacci of N.
+    """Iteratively return the fibonacci of N.
 
     >>> fib_iter(3)
     2
@@ -188,6 +200,21 @@ def fib_iter(n):
 
 def fact(n):
     """Return the factorial of N.
+
+    4! = 4 * 3 * 2 * 1
+    3! = 3 * 2 * 1
+    2! = 2 * 1
+
+    Facts
+    4! = 4 * 3!
+    n! = n * (n-1)!
+
+    n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1
+    (n - 1)! = (n - 1) * (n - 2) * ... * 3 * 2 * 1
+
+    factorial of n
+    0! = 1
+
     >>> fact(0)
     1
     >>> fact(4)
@@ -198,29 +225,20 @@ def fact(n):
     else:
         return n * fact(n-1)
 
-    """
-	4! = 4 * 3 * 2 * 1
-	3! = 3 * 2 * 1
-	2! = 2 * 1
-
-	Facts
-	4! = 4 * 3!
-	n! = n * (n-1)!
-
-	n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1
-	(n - 1)! = (n - 1) * (n - 2) * ... * 3 * 2 * 1
-
-	factorial of n
-	0! = 1
-	"""
-
 
 def fact_iter(n):
     """Return the factorial of N.
+    
     >>> fact_iter(0)
     1
     >>> fact_iter(4)
     24
+    >>> fact_iter(9)
+    362880
+    >>> fact_iter(6)
+    720
+    >>> fact_iter(8)
+    40320
     """
 
     total, k = 1, 1
@@ -265,9 +283,8 @@ def luhn_sum_double(n):
     else:
         return luhn_sum(all_but_last) + luhn_digit
 
+
 # Ordering
-
-
 def cascade(n):
     """print a cascade of prefixes of n.
 
@@ -289,6 +306,17 @@ def cascade(n):
 
 
 def cascade_easy(n):
+    """print a cascade of prefixes of n.
+
+    >>> cascade_easy(1234)
+    1234
+    123
+    12
+    1
+    12
+    123
+    1234
+    """
     print(n)
     if n >= 10:
         cascade_easy(n // 10)
@@ -317,7 +345,7 @@ def shrink(n):
 
 def count_partitions(n, m):
     if n == 0:
-        return 1
+        return 0
     elif n < 0:
         return 0
     elif m == 0:
