@@ -58,6 +58,15 @@ def luhn_sum_double(n):
         return luhn_digit
     return luhn_sum(all_but_last) + luhn_digit
 
+def generate_bank_account_number():
+    """
+    Generate a bank account number that passes the Luhn Algorithm
+    """
+    import random
+    n = random.randint(10 ** 15, 10 ** 16 - 1)
+    while luhn_sum(n) % 10 != 0:
+        n = random.randint(10 ** 15, 10 ** 16 - 1)
+    return n
 
 if __name__ == "__main__":
     import doctest
