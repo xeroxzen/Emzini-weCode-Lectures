@@ -68,6 +68,16 @@ def generate_bank_account_number():
         n = random.randint(10 ** 15, 10 ** 16 - 1)
     return n
 
+def generate_airtime_voucher():
+    """
+    Generate an airtime voucher that passes the Luhn algorithm. Airtime vouchers have 17 digits.
+    """
+    import random
+    pin = random.randint(10 ** 16, 10 ** 17 - 1)
+    while luhn_sum(pin) % 10 != 0:
+        pin = random.randint(10 ** 16, 10 ** 17 - 1)
+    return pin
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
